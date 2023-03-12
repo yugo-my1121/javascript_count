@@ -1,20 +1,45 @@
-window.addEventListener('DOMContentLoaded',
-  function(){
+$(function(){
+  const MSG_TEXT_MAX = '20文字以内で入力してください。';
+  const MSG_EMPTY = '入力必須です。';
+  const MSG_EMAIL_TYPE = 'email形式ではありません。';
+  const MSG_TEXTAREA_MAX = '100文字以内で入力してください。';
 
-    //テキストエリアのDOM取得
-    var node = document.querySelector('#js-count-text');
+  $('.valid-text').keyup(function(){
+    var form_g = $(this).closest('.form-group');
 
-    node.addEventListener('keyup',function(){
-      //テキストエリアの中身を取得し、その文字数を数える
-      var count = this.value.length;
+    if($(this).val().length > 20){
+      form_g.removeClass('has-success').addClass('has-error');
+      form_g.find('.help-block').text(MSG_TEXT_MAX);
+    }else{
+      form_g.removeClass('has-error').addClass('has-success');
+      form_g.find('help-block').text('');
+    }
+  });
 
-      //カウント箇所のDOMを取得
-      var counterNode = document.querySelector('.js-show-count-text');
+  $('.valid-email').keyup(function(){
+    var form_g = $(this).closest('.form-group');
 
-      //DOMの中身のテキストの書き換え
-      counterNode.innerText = count;
+    if($(this).val().length ===0){
+      form_g.removeClass('has-success').addClass('has-error');
+      form_g.find('.help-block').text(MSG_EMPTY);
+    }else if($(this).val().length >50 || !$(this).match(/^([a-zA-Z0-9])+([a-zA-Z0-9\._-])*@([a-zA-Z0-9_-])+([a-zA-Z0-9\._-]+)+$/)){
+      form_g.removeClass('has-success').addClass('has-error');
+      form_g.find('.help-block').text(MSG_EMAIL_TYPE);
+    }else{
+      form_g.removeClass('has-error').addClass('has-success');
+      form_g.find('.help-block').text('');
+    }
+  });
 
-    },false);
+  $('.valid-textarea').keyup(function(){
+    var form_g = $(this).closest('.form-group');
 
-  }, false
-);
+    if($(this).val().length > 100){
+      form_g.removeClass('has-success').addClass('has-error');
+      form_g.find('.help-block').text(MSG_TEXTAREA_MAX);
+    }else{
+      form_g.removeClass('has-error').addClass('has-success');
+      form_g.find('.help-block').text('');
+    }
+  });
+});

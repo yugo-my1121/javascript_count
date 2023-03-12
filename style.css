@@ -14,16 +14,15 @@ body{
 header{
   margin-bottom: 15px;
   height: 200px;
-  overflow: hidden;
 }
 header h1{
   font-size: 20px;
   font-family: 'Montserrat', sans-serif;
   margin: 15px;
-  padding: 20px;
+padding: 20px;
   text-align: center;
   float: left;
-  height: 150px;
+height: 150px;
   width: 150px;
   background: #f6f5f5;
   border-radius: 100px;
@@ -101,6 +100,15 @@ form{
 }
 input,textarea{
   font-size: 18px;
+  margin-bottom: 15px;
+}
+input[type="text"]{
+  width: 100%;
+  height: 60px;
+  border: none;
+  background: #f6f5f5;
+  padding: 10px;
+  box-sizing: border-box;
 }
 textarea{
   width: 100%;
@@ -118,5 +126,26 @@ input[type="submit"]{
   float: right;
 }
 input:-webkit-autofill {
-  -webkit-box-shadow: 0 0 0px 1000px #f6f5f5 inset;
+-webkit-box-shadow: 0 0 0px 1000px #f6f5f5 inset;
+}
+
+
+/*バリデーション*/
+.help-block{
+  font-size:14px;
+  margin-left: 10px;
+}
+/*エラー時*/
+.has-error input, .has-error textarea{
+  border: 1px solid #ff4d4b;
+}
+.has-error .help-block, .has-error label{
+  color: #ff4d4b;
+}
+/*サクセス時*/
+.has-success input, .has-success textarea{
+  border: 1px solid #2fb4ce;
+}
+.has-success .help-block, .has-success label{
+  color: #2fb4ce;
 }
